@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 
-@Transactional
 @AutoConfigureMockMvc
 @SpringBootTest
 class RestControllerTest(

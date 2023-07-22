@@ -1,10 +1,12 @@
 package io.github.raeperd.avoidtransactional
 
+import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RestController
 
+@Transactional
 @RestController
 class RestController(
     private val repository: UserRepository

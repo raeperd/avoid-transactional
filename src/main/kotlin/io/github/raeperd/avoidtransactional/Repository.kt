@@ -1,7 +1,9 @@
 package io.github.raeperd.avoidtransactional
 
-import jakarta.annotation.Generated
 import jakarta.persistence.*
+import jakarta.persistence.CascadeType.ALL
+import jakarta.persistence.FetchType.LAZY
+import jakarta.persistence.GenerationType.IDENTITY
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
@@ -10,12 +12,12 @@ import org.springframework.stereotype.Repository
 @Table(name = "users")
 class User(
     val name: String,
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(fetch = LAZY, cascade = [ALL], orphanRemoval = true)
     val articles: MutableList<Article> = mutableListOf(),
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    @GeneratedValue(strategy = IDENTITY)
+    val id: Long = 0
 }
 
 @Entity
@@ -24,9 +26,9 @@ class Article(
     @Column val title: String,
     @Column val contents: String
 ) {
-    @Generated
     @Id
-    private var id: Long = 0
+    @GeneratedValue(strategy = IDENTITY)
+    private val id: Long = 0
 }
 
 @Repository

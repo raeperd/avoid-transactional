@@ -14,6 +14,7 @@ class RepositoryTest(
         val username = "test-jpa-user"
         val userSaved = repository.save(User(username))
 
+        assertThat(userSaved.id).isNotEqualTo(0)
         assertThat(userSaved.name).isEqualTo(username)
     }
 }
